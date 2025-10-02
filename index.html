@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexiPay - فليكسي باي - منصة الدفع المرن الشاملة</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Security Notice -->
+    <div id="securityNotice" class="security-notice">
+        <i class="fas fa-shield-alt"></i>
+        <span>اتصال آمن ومشفر - SSL 256-bit</span>
+    </div>
+
+    <!-- Login Container -->
+    <div id="loginContainer" class="login-container" style="display: block;">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="platform-logo">
+                    <i class="fas fa-credit-card"></i>
+                    <h1>FlexiPay</h1>
+                    <span class="logo-arabic">فليكسي باي</span>
+                </div>
+                <p class="platform-tagline">منصة الدفع المرن الشاملة</p>
+                <div class="security-badges">
+                    <span class="security-badge"><i class="fas fa-lock"></i> مرخص من البنك المركزي</span>
+                    <span class="security-badge"><i class="fas fa-certificate"></i> ISO 27001</span>
+                </div>
+            </div>
+
+            <!-- Quick Demo Access -->
+            <div class="demo-access">
+                <h3><i class="fas fa-rocket"></i> التجربة السريعة</h3>
+                <p class="demo-description">جرّب المنصة فوراً بدون تعقيدات!</p>
+                
+                <button id="quickDemoBtn" class="btn btn--primary btn--full-width demo-btn">
+                    <i class="fas fa-bolt"></i> جرّب المنصة الآن - دخول فوري!
+                </button>
+                
+                <div class="demo-notice">
+                    <i class="fas fa-info-circle"></i>
+                    <span>جميع البيانات تجريبية وآمنة - لا نحفظ معلومات شخصية</span>
+                </div>
+            </div>
+
+            <!-- Traditional Login Form -->
+            <div id="loginForm" class="auth-form">
+                <div class="auth-divider">
+                    <span>أو تسجيل الدخول التقليدي</span>
+                </div>
+                
+                <h2><i class="fas fa-user-circle"></i> تسجيل الدخول</h2>
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">البريد الإلكتروني</label>
+                        <input type="email" id="loginEmail" class="form-control" placeholder="ahmed@test.com أو sara@test.com" value="">
+                        <i class="input-icon fas fa-user"></i>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">كلمة المرور</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="123456" value="">
+                        <i class="input-icon fas fa-lock"></i>
+                        <button type="button" class="password-toggle" onclick="togglePassword('loginPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="login-help">
+                        <div class="help-text">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>استخدم أحد الحسابات التجريبية أعلاه أو اضغط "جرّب المنصة الآن"</span>
+                        </div>
+                    </div>
+                    <button type="button" id="loginBtn" class="btn btn--primary btn--full-width">
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                    </button>
+                </form>
+                
+                <div class="auth-switch">
+                    <span>لا تملك حساب؟</span>
+                    <a href="#" onclick="showRegisterForm()">إنشاء حساب جديد</a>
+                </div>
+            </div>
+
+            <!-- Register Form (Simplified) -->
+            <div id="registerForm" class="auth-form">
+                <h2><i class="fas fa-user-plus"></i> إنشاء حساب تجريبي</h2>
+                <div class="demo-note">
+                    <i class="fas fa-info-circle"></i>
+                    <span>هذا حساب تجريبي - لن نطلب معلومات حقيقية</span>
+                </div>
+                
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">الاسم الكامل</label>
+                        <input type="text" id="registerName" class="form-control" placeholder="اسم تجريبي">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">البريد الإلكتروني</label>
+                        <input type="email" id="registerEmail" class="form-control" placeholder="example@test.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">كلمة المرور</label>
+                        <input type="password" id="registerPassword" class="form-control" placeholder="أي كلمة مرور">
+                    </div>
+                    <button type="button" id="registerBtn" class="btn btn--primary btn--full-width">
+                        <i class="fas fa-user-plus"></i> إنشاء حساب تجريبي
+                    </button>
+                </form>
+                
+                <div class="auth-switch">
+                    <span>لديك حساب بالفعل؟</span>
+                    <a href="#" onclick="showLoginForm()">تسجيل الدخول</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="main-app hidden">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="flex justify-between items-center">
+                    <div class="logo">
+                        <h1><i class="fas fa-credit-card"></i> FlexiPay</h1>
+                        <span class="logo-arabic">فليكسي باي</span>
+                    </div>
+                    <div class="header-controls">
+                        <div class="demo-indicator">
+                            <i class="fas fa-flask"></i>
+                            <span>نسخة تجريبية</span>
+                        </div>
+                        <div class="notifications-bell">
+                            <button class="notification-btn" onclick="toggleNotifications()">
+                                <i class="fas fa-bell"></i>
+                                <span id="notificationCount" class="notification-count">3</span>
+                            </button>
+                            <div id="notificationsDropdown" class="notifications-dropdown hidden">
+                                <div class="notifications-header">
+                                    <h4>الإشعارات</h4>
+                                    <button onclick="markAllAsRead()" class="mark-read-btn">قراءة الكل</button>
+                                </div>
+                                <div id="notificationsList" class="notifications-list"></div>
+                                <div class="notifications-footer">
+                                    <a href="#" onclick="showAllNotifications()">عرض جميع الإشعارات</a>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="themeToggle" class="btn btn--secondary btn--sm">
+                            <i class="fas fa-moon" id="themeIcon"></i>
+                        </button>
+                        <div class="user-profile">
+                            <button class="profile-btn" onclick="toggleProfileMenu()">
+                                <span class="user-avatar">👤</span>
+                                <div class="user-info">
+                                    <span id="userName">أه</span>
+                                    <div class="user-level">عميل ذهبي ⭐</div>
+                                </div>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div id="profileDropdown" class="profile-dropdown hidden">
+                                <a href="#" onclick="showProfile()"><i class="fas fa-user"></i> الملف الشخصي</a>
+                                <a href="#" onclick="showAccountSettings()"><i class="fas fa-cog"></i> إعدادات الحساب</a>
+                                <a href="#" onclick="showSecuritySettings()"><i class="fas fa-shield-alt"></i> الأمان</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> تسجيل الخروج</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navigation">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><button class="nav-btn active" data-section="dashboard"><i class="fas fa-home"></i> لوحة القيادة</button></li>
+                    <li><button class="nav-btn" data-section="loans"><i class="fas fa-hand-holding-usd"></i> قروضي</button></li>
+                    <li><button class="nav-btn" data-section="accounts"><i class="fas fa-university"></i> الحسابات والمحافظ</button></li>
+                    <li><button class="nav-btn" data-section="payment"><i class="fas fa-money-bill-wave"></i> الدفع المرن</button></li>
+                    <li><button class="nav-btn" data-section="schedule"><i class="fas fa-calendar-alt"></i> جدولة الدفع</button></li>
+                    <li><button class="nav-btn" data-section="requests"><i class="fas fa-file-alt"></i> طلباتي</button></li>
+                    <li><button class="nav-btn" data-section="chatbot"><i class="fas fa-robot"></i> المساعد الذكي</button></li>
+                    <li><button class="nav-btn" data-section="rewards"><i class="fas fa-star"></i> المكافآت</button></li>
+                    <li><button class="nav-btn" data-section="analytics"><i class="fas fa-chart-bar"></i> التحليلات</button></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <div class="container">
+                    <div class="welcome-section">
+                        <h2>أهلاً بك في FlexiPay، <span id="welcomeUserName">أحمد محمد</span></h2>
+                        <p class="tagline">المرونة في متناول يدك - نحن هنا لمساعدتك في إدارة أقساطك بذكاء</p>
+                        <div class="demo-success-message">
+                            <i class="fas fa-check-circle"></i>
+                            <span>تم تسجيل الدخول بنجاح! جميع الميزات متاحة للتجربة</span>
+                        </div>
+                        <div class="quick-access">
+                            <button class="quick-btn" onclick="showQuickPayment()">
+                                <i class="fas fa-bolt"></i> دفع سريع
+                            </button>
+                            <button class="quick-btn" onclick="showSection('requests')">
+                                <i class="fas fa-calendar-plus"></i> طلب تأجيل
+                            </button>
+                            <button class="quick-btn" onclick="showSection('chatbot')">
+                                <i class="fas fa-headset"></i> مساعدة فورية
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Loan Overview Card -->
+                    <div class="loan-overview-card">
+                        <div class="loan-header">
+                            <h3><i class="fas fa-file-contract"></i> نظرة عامة على القرض</h3>
+                            <span class="loan-status status--success">نشط</span>
+                        </div>
+                        <div class="loan-details">
+                            <div class="loan-amount">
+                                <span class="label">إجمالي القرض</span>
+                                <span class="amount" id="totalLoanAmount">350,000 ج.م</span>
+                            </div>
+                            <div class="loan-progress">
+                                <div class="progress-circle">
+                                    <svg viewBox="0 0 36 36" class="circular-chart">
+                                        <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        <path class="circle" stroke-dasharray="49.5, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                                        <text x="18" y="20.35" class="percentage">49.5%</text>
+                                    </svg>
+                                </div>
+                                <div class="progress-details">
+                                    <div class="progress-item">
+                                        <span class="label">تم السداد</span>
+                                        <span class="value success" id="paidAmount">173,400 ج.م</span>
+                                    </div>
+                                    <div class="progress-item">
+                                        <span class="label">المتبقي</span>
+                                        <span class="value" id="remainingAmount">176,600 ج.م</span>
+                                    </div>
+                                    <div class="progress-item">
+                                        <span class="label">القسط القادم</span>
+                                        <span class="value next-payment" id="nextPayment">15 أكتوبر - 10,200 ج.م</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats Grid -->
+                    <div class="quick-stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon success">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value">18</div>
+                                <div class="stat-label">أقساط مدفوعة</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon warning">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value">30</div>
+                                <div class="stat-label">أقساط متبقية</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon info">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value">2,450</div>
+                                <div class="stat-label">نقاط المكافآت</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon primary">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value">720</div>
+                                <div class="stat-label">النقاط الائتمانية</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities -->
+                    <div class="recent-activities card">
+                        <div class="card__body">
+                            <h3><i class="fas fa-history"></i> النشاط الأخير</h3>
+                            <div id="recentActivitiesList" class="activities-list"></div>
+                            <div class="activities-footer">
+                                <a href="#" onclick="showAllActivities()">عرض جميع الأنشطة</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loans Section -->
+            <section id="loans" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <h2><i class="fas fa-hand-holding-usd"></i> إدارة القروض</h2>
+                            <p>تفاصيل قروضك الحالية وطلب قروض جديدة</p>
+                        </div>
+                        <button class="btn btn--primary" onclick="showNewLoanForm()">
+                            <i class="fas fa-plus"></i> طلب قرض جديد
+                        </button>
+                    </div>
+
+                    <!-- Current Loan Details -->
+                    <div class="loan-details-card card">
+                        <div class="card__header">
+                            <h3>تفاصيل القرض الحالي</h3>
+                            <span class="loan-id">رقم القرض: LOAN001</span>
+                        </div>
+                        <div class="card__body">
+                            <div class="loan-info-grid">
+                                <div class="info-item">
+                                    <span class="label">نوع القرض</span>
+                                    <span class="value">قرض شخصي</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">مبلغ القرض</span>
+                                    <span class="value">350,000 ج.م</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">معدل الفائدة</span>
+                                    <span class="value">14.5% سنوياً</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">مدة القرض</span>
+                                    <span class="value">48 شهر</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">القسط الشهري</span>
+                                    <span class="value">10,200 ج.م</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="label">تاريخ البداية</span>
+                                    <span class="value">1 أبريل 2024</span>
+                                </div>
+                            </div>
+                            
+                            <div class="guarantor-info">
+                                <h4><i class="fas fa-user-shield"></i> بيانات الضامن</h4>
+                                <div class="guarantor-details">
+                                    <div class="info-item">
+                                        <span class="label">الاسم</span>
+                                        <span class="value">داود سليمان صموئيل</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="label">رقم الهاتف</span>
+                                        <span class="value">+201555777888</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span class="label">صلة القرابة</span>
+                                        <span class="value">اب</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="loan-actions">
+                                <button class="btn btn--primary" onclick="showSection('payment')">
+                                    <i class="fas fa-credit-card"></i> دفع قسط
+                                </button>
+                                <button class="btn btn--outline" onclick="showSection('schedule')">
+                                    <i class="fas fa-calendar-alt"></i> إعادة جدولة
+                                </button>
+                                <button class="btn btn--outline" onclick="generateLoanStatement()">
+                                    <i class="fas fa-file-pdf"></i> كشف حساب
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Accounts & Wallets Section -->
+            <section id="accounts" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <h2><i class="fas fa-university"></i> الحسابات والمحافظ</h2>
+                            <p>إدارة حساباتك البنكية ومحافظك الإلكترونية</p>
+                        </div>
+                        <button class="btn btn--primary" onclick="showAddAccountForm()">
+                            <i class="fas fa-plus"></i> إضافة حساب
+                        </button>
+                    </div>
+
+                    <!-- Bank Accounts -->
+                    <div class="accounts-section">
+                        <h3><i class="fas fa-university"></i> الحسابات البنكية</h3>
+                        <div class="accounts-grid">
+                            <div class="account-card">
+                                <div class="account-header">
+                                    <div class="bank-logo nbe">🏛️</div>
+                                    <div class="account-info">
+                                        <h4>البنك الأهلي المصري</h4>
+                                        <span class="account-number">****1234</span>
+                                        <span class="account-type">حساب جاري</span>
+                                    </div>
+                                    <div class="account-status">
+                                        <span class="status status--success">مُفعّل</span>
+                                        <span class="default-badge">افتراضي</span>
+                                    </div>
+                                </div>
+                                <div class="account-actions">
+                                    <button class="btn btn--sm btn--outline">تعديل</button>
+                                    <button class="btn btn--sm btn--outline">حذف</button>
+                                </div>
+                            </div>
+
+                            <div class="account-card">
+                                <div class="account-header">
+                                    <div class="bank-logo cib">🏦</div>
+                                    <div class="account-info">
+                                        <h4>البنك التجاري الدولي</h4>
+                                        <span class="account-number">****9876</span>
+                                        <span class="account-type">حساب توفير</span>
+                                    </div>
+                                    <div class="account-status">
+                                        <span class="status status--success">مُفعّل</span>
+                                    </div>
+                                </div>
+                                <div class="account-actions">
+                                    <button class="btn btn--sm btn--outline">تعديل</button>
+                                    <button class="btn btn--sm btn--outline">حذف</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- E-Wallets -->
+                    <div class="wallets-section">
+                        <h3><i class="fas fa-wallet"></i> المحافظ الإلكترونية</h3>
+                        <div class="wallets-grid">
+                            <div class="wallet-card active">
+                                <div class="wallet-header">
+                                    <div class="wallet-logo vodafone">📱</div>
+                                    <div class="wallet-info">
+                                        <h4>فودافون كاش</h4>
+                                        <span class="wallet-number">+201234567890</span>
+                                        <span class="wallet-balance">الرصيد: 15,000 ج.م</span>
+                                    </div>
+                                    <div class="wallet-status">
+                                        <span class="status status--success">مُفعّل</span>
+                                        <span class="default-badge">افتراضي</span>
+                                    </div>
+                                </div>
+                                <div class="wallet-limits">
+                                    <div class="limit-item">
+                                        <span class="limit-label">الحد اليومي</span>
+                                        <span class="limit-value">50,000 ج.م</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wallet-card active">
+                                <div class="wallet-header">
+                                    <div class="wallet-logo instapay">💳</div>
+                                    <div class="wallet-info">
+                                        <h4>InstaPay</h4>
+                                        <span class="wallet-number">+201234567890</span>
+                                        <span class="wallet-link">مربوط بـ البنك الأهلي المصري</span>
+                                    </div>
+                                    <div class="wallet-status">
+                                        <span class="status status--success">مُفعّل</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="wallet-card pending">
+                                <div class="wallet-header">
+                                    <div class="wallet-logo fawry">🏪</div>
+                                    <div class="wallet-info">
+                                        <h4>فوري</h4>
+                                        <span class="wallet-number">+201234567890</span>
+                                        <span class="wallet-status-text">قيد التفعيل</span>
+                                    </div>
+                                    <div class="wallet-status">
+                                        <span class="status status--warning">قيد المراجعة</span>
+                                    </div>
+                                </div>
+                                <div class="wallet-actions">
+                                    <button class="btn btn--sm btn--primary">متابعة التفعيل</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Payment Section -->
+            <section id="payment" class="section">
+                <div class="container">
+                    <h2><i class="fas fa-money-bill-wave"></i> الدفع المرن</h2>
+                    
+                    <!-- Payment Calculator -->
+                    <div class="payment-calculator card">
+                        <div class="card__body">
+                            <h3>حاسبة الدفع التفاعلية</h3>
+                            <div class="calculator-section">
+                                <div class="form-group">
+                                    <label class="form-label">مبلغ الدفع (ج.م)</label>
+                                    <div class="amount-input">
+                                        <input type="range" id="paymentSlider" class="payment-slider" min="1000" max="176600" value="10200">
+                                        <input type="number" id="paymentAmount" class="form-control amount-field" placeholder="أدخل المبلغ" min="1000" max="176600" value="10200">
+                                    </div>
+                                </div>
+                                <div class="payment-impact">
+                                    <div class="impact-visual">
+                                        <div class="before-after">
+                                            <div class="before">
+                                                <span class="label">قبل الدفع</span>
+                                                <span class="amount">176,600 ج.م</span>
+                                            </div>
+                                            <div class="arrow">→</div>
+                                            <div class="after">
+                                                <span class="label">بعد الدفع</span>
+                                                <span id="remainingAfterPayment" class="amount">166,400 ج.م</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="completion-progress">
+                                        <span>نسبة الإنجاز الجديدة: <span id="newCompletionRate">52.4%</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h4>اختر طريقة الدفع</h4>
+                            <div class="payment-methods">
+                                <div class="method-card" data-method="vodafone">
+                                    <div class="method-icon" style="background: #E60000">📱</div>
+                                    <span class="method-name">فودافون كاش</span>
+                                    <div class="method-status available">متاح</div>
+                                </div>
+                                <div class="method-card" data-method="instapay">
+                                    <div class="method-icon" style="background: #1B4F72">💳</div>
+                                    <span class="method-name">InstaPay</span>
+                                    <div class="method-status available">متاح</div>
+                                </div>
+                                <div class="method-card" data-method="nbe">
+                                    <div class="method-icon" style="background: #8B0000">🏛️</div>
+                                    <span class="method-name">البنك الأهلي المصري</span>
+                                    <div class="method-status available">متاح</div>
+                                </div>
+                                <div class="method-card" data-method="cib">
+                                    <div class="method-icon" style="background: #003366">🏦</div>
+                                    <span class="method-name">البنك التجاري الدولي</span>
+                                    <div class="method-status available">متاح</div>
+                                </div>
+                            </div>
+                            
+                            <button id="payButton" class="btn btn--primary btn--full-width">
+                                <i class="fas fa-credit-card"></i> تأكيد الدفع
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Schedule Section -->
+            <section id="schedule" class="section">
+                <div class="container">
+                    <h2><i class="fas fa-calendar-alt"></i> جدولة الدفع المتقدمة</h2>
+                    
+                    <div class="schedule-planner card">
+                        <div class="card__body">
+                            <h3>التقويم التفاعلي</h3>
+                            
+                            <div class="calendar-section">
+                                <div class="calendar-header">
+                                    <button id="prevMonth" class="btn btn--secondary btn--sm">‹</button>
+                                    <span id="currentMonth">أكتوبر 2025</span>
+                                    <button id="nextMonth" class="btn btn--secondary btn--sm">›</button>
+                                </div>
+                                <div id="calendar" class="calendar-grid"></div>
+                            </div>
+
+                            <div class="schedule-timeline">
+                                <h4>المدفوعات القادمة</h4>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot"></div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-date">15 أكتوبر 2025</div>
+                                            <div class="timeline-amount">10,200 ج.م</div>
+                                            <div class="timeline-status upcoming">مستحق</div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot"></div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-date">15 نوفمبر 2025</div>
+                                            <div class="timeline-amount">10,200 ج.م</div>
+                                            <div class="timeline-status planned">مخطط</div>
+                                        </div>
+                                    </div>
+                                    <div class="timeline-item">
+                                        <div class="timeline-dot"></div>
+                                        <div class="timeline-content">
+                                            <div class="timeline-date">15 ديسمبر 2025</div>
+                                            <div class="timeline-amount">10,200 ج.م</div>
+                                            <div class="timeline-status planned">مخطط</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button id="saveSchedule" class="btn btn--primary">
+                                <i class="fas fa-save"></i> حفظ الجدولة
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Requests Section -->
+            <section id="requests" class="section">
+                <div class="container">
+                    <div class="section-header">
+                        <div class="section-title">
+                            <h2><i class="fas fa-file-alt"></i> إدارة الطلبات</h2>
+                            <p>طلبات التأجيل وإعادة الجدولة</p>
+                        </div>
+                        <button class="btn btn--primary" onclick="showNewRequestForm()">
+                            <i class="fas fa-plus"></i> طلب جديد
+                        </button>
+                    </div>
+
+                    <!-- Request Form -->
+                    <div id="newRequestForm" class="request-form card hidden">
+                        <div class="card__body">
+                            <h3>طلب جديد</h3>
+                            <form>
+                                <div class="form-group">
+                                    <label class="form-label">نوع الطلب</label>
+                                    <select id="requestType" class="form-control">
+                                        <option value="">اختر نوع الطلب</option>
+                                        <option value="payment_delay">طلب تأجيل دفعة</option>
+                                        <option value="emi_reduction">طلب تخفيض القسط</option>
+                                        <option value="schedule_change">طلب تغيير موعد الدفع</option>
+                                        <option value="early_settlement">طلب تسوية مبكرة</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">سبب الطلب</label>
+                                    <textarea id="requestReason" class="form-control" rows="4" placeholder="اشرح سبب طلبك بالتفصيل..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">المدة المطلوبة (بالأيام)</label>
+                                    <input type="number" id="requestDuration" class="form-control" min="1" max="90" placeholder="عدد الأيام">
+                                </div>
+                                <div class="form-actions">
+                                    <button type="button" class="btn btn--outline" onclick="cancelRequest()">إلغاء</button>
+                                    <button type="button" id="submitRequest" class="btn btn--primary">
+                                        <i class="fas fa-paper-plane"></i> إرسال الطلب
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Current Requests -->
+                    <div class="requests-list">
+                        <h3>طلباتي الحالية</h3>
+                        <div class="request-card approved">
+                            <div class="request-header">
+                                <div class="request-info">
+                                    <h4>طلب تأجيل دفعة</h4>
+                                    <span class="request-id">REQ001</span>
+                                </div>
+                                <div class="request-status">
+                                    <span class="status status--success">تمت الموافقة</span>
+                                </div>
+                            </div>
+                            <div class="request-details">
+                                <p><strong>السبب:</strong> ظروف مالية طارئة</p>
+                                <p><strong>تاريخ الطلب:</strong> 28 سبتمبر 2025</p>
+                                <p><strong>تاريخ المراجعة:</strong> 29 سبتمبر 2025</p>
+                                <p><strong>الموعد الجديد:</strong> 15 أكتوبر 2025</p>
+                                <p><strong>ملاحظات:</strong> تم الموافقة لمرة واحدة. يرجى الالتزام بالموعد الجديد</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI Chatbot Section -->
+            <section id="chatbot" class="section">
+                <div class="container">
+                    <h2><i class="fas fa-robot"></i> المساعد الذكي المتطور</h2>
+                    
+                    <div class="chatbot-container card">
+                        <div class="chat-header">
+                            <div class="bot-info">
+                                <div class="bot-avatar">🤖</div>
+                                <div class="bot-details">
+                                    <h3>FlexiPay AI Assistant</h3>
+                                    <span class="status-indicator online">متصل • مدعوم بالذكاء الاصطناعي</span>
+                                </div>
+                            </div>
+                            <div class="chat-controls">
+                                <button class="chat-control-btn" onclick="clearChat()">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="chat-control-btn" onclick="toggleChatHistory()">
+                                    <i class="fas fa-history"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message bot-message">
+                                <div class="message-avatar">🤖</div>
+                                <div class="message-bubble">
+                                    <div class="message-content">
+                                        أهلاً وسهلاً! أنا مساعدك الذكي في FlexiPay المدعوم بالذكاء الاصطناعي المتطور. 
+                                        يمكنني مساعدتك في:<br/>
+                                        • معرفة رصيدك ومعلومات القرض<br/>
+                                        • جدولة وإعادة تنظيم المدفوعات<br/>
+                                        • الإجابة على استفساراتك المالية<br/>
+                                        • تقديم النصائح المالية الذكية<br/>
+                                        • معالجة طلباتك وشكاويك<br/><br/>
+                                        كيف يمكنني مساعدتك اليوم؟ 😊
+                                    </div>
+                                    <div class="message-time">الآن</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="quick-questions">
+                            <h4>أسئلة شائعة:</h4>
+                            <div class="question-buttons">
+                                <button class="question-btn" data-question="balance">ما هو رصيدي الحالي؟</button>
+                                <button class="question-btn" data-question="nextPayment">متى موعد القسط القادم؟</button>
+                                <button class="question-btn" data-question="paymentMethods">طرق الدفع المتاحة؟</button>
+                                <button class="question-btn" data-question="latePayment">ماذا لو تأخرت في السداد؟</button>
+                                <button class="question-btn" data-question="reschedule">كيف أعيد جدولة القسط؟</button>
+                                <button class="question-btn" data-question="rewards">نقاط المكافآت الخاصة بي؟</button>
+                                <button class="question-btn" data-question="technicalSupport">مشكلة تقنية</button>
+                                <button class="question-btn" data-question="financialAdvice">نصيحة مالية</button>
+                            </div>
+                        </div>
+                        
+                        <div class="chat-input">
+                            <button id="attachFile" class="btn btn--secondary btn--sm">
+                                <i class="fas fa-paperclip"></i>
+                            </button>
+                            <input type="text" id="chatInput" class="form-control" placeholder="اكتب رسالتك هنا... يمكنني فهم العربية الفصحى والعامية">
+                            <button id="voiceInput" class="btn btn--secondary btn--sm">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button id="sendMessage" class="btn btn--primary">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rewards Section -->
+            <section id="rewards" class="section">
+                <div class="container">
+                    <h2><i class="fas fa-star"></i> نظام المكافآت والتحفيز</h2>
+                    
+                    <div class="rewards-overview">
+                        <div class="points-card card">
+                            <div class="card__body">
+                                <div class="points-display">
+                                    <div class="points-counter">
+                                        <span class="points-number">2,450</span>
+                                        <span class="points-label">نقطة</span>
+                                    </div>
+                                    <div class="level-progress">
+                                        <div class="level-info">
+                                            <span>المستوى 4 - عميل ماسي</span>
+                                            <span>باقي 550 نقطة للمستوى التالي</span>
+                                        </div>
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 82%"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="badges-section card">
+                            <div class="card__body">
+                                <h3>الشارات المكتسبة</h3>
+                                <div class="badges-grid">
+                                    <div class="badge-item earned">
+                                        <div class="badge-icon">🏆</div>
+                                        <span>عام كامل من الانضباط</span>
+                                    </div>
+                                    <div class="badge-item earned">
+                                        <div class="badge-icon">⭐</div>
+                                        <span>الدفع المبكر</span>
+                                    </div>
+                                    <div class="badge-item earned">
+                                        <div class="badge-icon">💎</div>
+                                        <span>عميل ماسي</span>
+                                    </div>
+                                    <div class="badge-item earned">
+                                        <div class="badge-icon">🎯</div>
+                                        <span>هدف محقق</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rewards Store -->
+                    <div class="rewards-store card">
+                        <div class="card__body">
+                            <h3>متجر المكافآت</h3>
+                            <div class="rewards-grid">
+                                <div class="reward-item available">
+                                    <div class="reward-icon">💰</div>
+                                    <h4>خصم 5% على القسط القادم</h4>
+                                    <div class="reward-cost">500 نقطة</div>
+                                    <button class="btn btn--primary btn--sm">استبدال</button>
+                                </div>
+                                <div class="reward-item available">
+                                    <div class="reward-icon">⏰</div>
+                                    <h4>تأجيل مجاني لمدة أسبوع</h4>
+                                    <div class="reward-cost">800 نقطة</div>
+                                    <button class="btn btn--primary btn--sm">استبدال</button>
+                                </div>
+                                <div class="reward-item available">
+                                    <div class="reward-icon">📞</div>
+                                    <h4>استشارة مالية مجانية</h4>
+                                    <div class="reward-cost">1,200 نقطة</div>
+                                    <button class="btn btn--primary btn--sm">استبدال</button>
+                                </div>
+                                <div class="reward-item available">
+                                    <div class="reward-icon">📱</div>
+                                    <h4>رصيد فودافون كاش 100 جنيه</h4>
+                                    <div class="reward-cost">2,000 نقطة</div>
+                                    <button class="btn btn--primary btn--sm">استبدال</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Section -->
+            <section id="analytics" class="section">
+                <div class="container">
+                    <h2><i class="fas fa-chart-bar"></i> الإحصائيات والتحليلات</h2>
+                    
+                    <div class="analytics-overview">
+                        <div class="stat-card card">
+                            <div class="card__body">
+                                <div class="stat-icon">📊</div>
+                                <h4>متوسط وقت الدفع</h4>
+                                <div class="stat-value">2.8 أيام مبكراً</div>
+                                <div class="stat-trend positive">+12%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card card">
+                            <div class="card__body">
+                                <div class="stat-icon">✅</div>
+                                <h4>معدل الالتزام</h4>
+                                <div class="stat-value">95%</div>
+                                <div class="stat-trend positive">ممتاز</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card card">
+                            <div class="card__body">
+                                <div class="stat-icon">💰</div>
+                                <h4>إجمالي الوفورات</h4>
+                                <div class="stat-value">4,500 ج.م</div>
+                                <div class="stat-trend positive">من الدفع المبكر</div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card card">
+                            <div class="card__body">
+                                <div class="stat-icon">📈</div>
+                                <h4>متوسط الدفع الشهري</h4>
+                                <div class="stat-value">10,800 ج.م</div>
+                                <div class="stat-trend positive">+6% عن الهدف</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="charts-section">
+                        <div class="chart-container card">
+                            <div class="card__body">
+                                <h3>تطور المدفوعات الشهرية</h3>
+                                <div class="chart-wrapper" style="position: relative; height: 350px;">
+                                    <canvas id="paymentsChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-check-circle"></i> تم بنجاح!</h3>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage"></p>
+                <div class="celebration">🎉</div>
+                <div class="reward-notification">
+                    <i class="fas fa-star"></i>
+                    <span>تم إضافة نقاط مكافآت جديدة!</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="closeModal" class="btn btn--primary">رائع!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h4>FlexiPay</h4>
+                        <span>فليكسي باي</span>
+                        <p>المرونة في متناول يدك</p>
+                    </div>
+                    <div class="platform-info">
+                        <p><strong>الترخيص:</strong> CBE-FIN-2024-001</p>
+                        <p><strong>النسخة:</strong> Demo 3.0 - تجريبية</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#" target="_blank">الأمان والحماية 🔒</a></li>
+                        <li><a href="#" target="_blank">سياسة الخصوصية 📋</a></li>
+                        <li><a href="#" target="_blank">شروط الاستخدام 📄</a></li>
+                        <li><a href="#" target="_blank">الأسئلة الشائعة ❓</a></li>
+                        <li><a href="#" target="_blank">مركز المساعدة 💬</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>تواصل معنا</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> 16555 (متاح 24/7)</p>
+                        <p><i class="fas fa-envelope"></i> support@flexipay.eg</p>
+                        <p><i class="fas fa-map-marker-alt"></i> القاهرة الجديدة، مصر</p>
+                        <p><i class="fas fa-globe"></i> www.flexipay.eg</p>
+                    </div>
+                    <div class="security-badges">
+                        <span class="security-badge">🛡️ SSL مشفر</span>
+                        <span class="security-badge">🔐 PCI DSS معتمد</span>
+                        <span class="security-badge">🏛️ مرخص من البنك المركزي</span>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>الأمان والامتثال</h4>
+                    <div class="compliance-badges">
+                        <div class="compliance-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>ISO 27001</span>
+                        </div>
+                        <div class="compliance-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>تشفير 256-bit</span>
+                        </div>
+                        <div class="compliance-item">
+                            <i class="fas fa-lock"></i>
+                            <span>HTTPS آمن</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright-section">
+                    <p><strong>جميع الحقوق محفوظة © 2025 منصة FlexiPay - فليكسي باي</strong></p>
+                    <p><strong>Made by Eng. Felobater Dawoud</strong></p>
+                    <p><strong>نسخة تجريبية - للاختبار فقط</strong></p>
+                </div>
+                <div class="footer-links">
+                    <a href="#" target="_blank">سياسة الخصوصية</a>
+                    <a href="#" target="_blank">شروط الاستخدام</a>
+                    <a href="#" target="_blank">سياسة ملفات تعريف الارتباط</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
